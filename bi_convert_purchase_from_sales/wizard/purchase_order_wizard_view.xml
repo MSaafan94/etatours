@@ -42,7 +42,6 @@
 <!--                            <field name=""-->
                             <field name="product_uom" groups="uom.group_uom" class="oe_inline"/>
                             <field name="price_unit"/>
-                            <field name="cost"/>
                         </tree>
                         </field>
 <!--                    </group>-->
