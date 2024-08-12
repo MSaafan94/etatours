@@ -36,11 +36,11 @@
     <record id="view_order_tree_inherit" model="ir.ui.view">
     <field name="name">sale.order.tree.inherit</field>
     <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale.view_order_tree"/>
+    <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
     <field name="arch" type="xml">
         <xpath expr="//field[@name='amount_total']" position="after">
-            <field name="total_cost"/>
-            <field name="profit"/>
+            <field name="total_cost" sum="total cost" optional="hide"/>
+            <field name="profit" sum="profit" optional="hide"/>
         </xpath>
     </field>
 </record>
