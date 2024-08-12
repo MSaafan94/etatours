@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_platform,access.model.crm_platform,model_crm_platform,,1,1,1,1
+access_crm_lead_auto,access.model.crm_lead_auto,model_crm_lead_assignment,,1,1,1,1
+

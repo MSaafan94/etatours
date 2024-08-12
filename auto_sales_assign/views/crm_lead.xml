@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="crm_lead_form_inherit" model="ir.ui.view">
+            <field name="name">crm_lead_form_inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+<!--                    <header>-->
+                        <button name="action_assign_leads" string="Assign Leads" type="object" class="btn-primary"/>
+<!--                    </header>-->
+                </xpath>
+                <xpath expr="//field[@name='phone']" position="replace">
+<!--                    <label for="phone"/>-->
+                    <div class="0-row">
+                        <field name="phone"/>
+                        <button help="Send WhatsApp for Web" icon="fa-whatsapp" invisible="phone == False" name="open_whatsapp_web" style="color:#25D366;border:none" type="object"/>
+                        <button help="Send WhatsApp for Mobile" icon="fa-whatsapp" invisible="phone == False" name="open_whatsapp_mobile" style="color:#d3254e;border:none" type="object"/>
+                    </div>
+                </xpath>
+                 <xpath expr="//field[@name='tag_ids']" position="after">
+                     <field name="destination"/>
+                     <field name="travel_date"/>
+                     <field name="platform"/>
+                 </xpath>
+            </field>
+        </record>
+
+<!--        <record id="action_assign_crm_leads" model="ir.actions.server">-->
+<!--            <field name="name">Assign Leads</field>-->
+<!--            <field name="model_id" ref="model_res_config_settings"/>-->
+<!--            <field name="state">code</field>-->
+<!--            <field name="code">-->
+<!--                    action = env['res.config.settings'].action_crm_assign_leads()-->
+<!--            </field>-->
+<!--        </record>-->
+<!--          <record id="crm_case_kanban_view_leads_inheritt" model="ir.ui.view">-->
+<!--            <field name="name">crm.lead.kanban.inherit.lead.assignmentt</field>-->
+<!--            <field name="model">crm.lead</field>-->
+<!--            <field name="inherit_id" ref="crm.crm_lead_view_tree"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//header" position="inside">-->
+<!--&lt;!&ndash;                    <header>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <button name="action_assign_leads" string="Assign Leads" type="object" class="btn-primary"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </header>&ndash;&gt;-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+    </data>
+</odoo>

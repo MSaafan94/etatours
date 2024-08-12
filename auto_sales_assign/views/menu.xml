@@ -1,0 +1,14 @@
+<odoo>
+    <record id="crm_platform_action" model="ir.actions.act_window">
+        <field name="name">Platform</field>
+        <field name="res_model">crm.platform</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="crm_platform"
+              name="Platforms"
+              parent="crm.crm_menu_config"
+              sequence="0"
+              action="crm_platform_action"/>
+
+</odoo>

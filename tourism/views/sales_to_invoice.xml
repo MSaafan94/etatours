@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="account_invoice_many_discounts_form_view_inh">
+        <field name="name">account.move.many_discounts.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line_ids']//field[@name='price_unit']" position="before">
+                <field name="pnr" optional="hide"/>
+                <field name="customer_name" style="width: 400px;" />
+                <field name="airline" optional="hide"/>
+                <field name="tkt_no" optional="hide"/>
+                <field name="route" optional="hide"/>
+<!--                <field name="reference" invisible="1" optional="hide"/>-->
+<!--                <field name="serial_number" invisible="1" optional="hide"/>-->
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']//field[@name='price_unit']" position="after">
+                <field name="cost" optional="hide"/>
+            </xpath>
+
+            <xpath expr="//field[@name='line_ids']//field[@name='account_id']" position="after">
+                <field name="customer_name" style="width: 400px;" invisible="0"/>
+                <field name="pnr" invisible="1" />
+                <field name="airline" invisible="1"/>
+<!--                <field name="serial_number" invisible="1"/>-->
+                <field name="route" invisible="1"/>
+                <field name="tkt_no" invisible="1"/>
+                <field name="reference" column_invisible="True"/>
+                <field name="cost" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="sale_order_many_discounts_form_view_inh">
+        <field name="name">sale.order.extra.fields.form.inh</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="phone"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//tree//field[@name='price_unit']" position="before">
+                  <field name="pnr" optional="hide"/>
+                <field name="customer_name" style="width: 400px;" />
+                <field name="airline" optional="hide"/>
+                <field name="tkt_no" optional="hide" />
+                <field name="route" optional="hide"/>
+                <field name="reference" column_invisible="True" optional="hide"/>
+                <field name="serial_number" column_invisible="True" optional="hide"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']//tree//field[@name='price_unit']" position="after">
+
+                <field name="cost" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

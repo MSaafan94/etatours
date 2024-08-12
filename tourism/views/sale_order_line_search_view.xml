@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_sale_order_line_search" model="ir.ui.view">
+            <field name="name">sale.order.line.search</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <field name="order_line_name" string="Order Line Name" filter_domain="[('order_line_name', 'ilike', self)]"/>
+                    <field name="order_line_tkt_no" string="Order Line Ticket No" filter_domain="[('order_line_tkt_no', 'ilike', self)]"/>
+                    <field name="order_line_reference" string="Order Line reference" filter_domain="[('order_line_reference', 'ilike', self)]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
