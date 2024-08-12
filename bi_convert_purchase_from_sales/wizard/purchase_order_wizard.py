@@ -88,7 +88,7 @@ class CreatePurchaseOrder(models.TransientModel):
             'sale_order_template_id': so.sale_order_template_id.id
         })
         sale_order = self.env['sale.order'].browse(self._context.get('active_ids', []))
-        message = str(purchase_order.id) + purchase_order.name
+        message = purchase_order.name + 'has been created by' + self.env.user
         sale_order.message_post(body=message)
 
         return res
