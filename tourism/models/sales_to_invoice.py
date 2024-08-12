@@ -6,6 +6,21 @@ class SaleOrderLineSearch(models.Model):
 
     phone = fields.Char(related='partner_id.phone', readonly=False)
 
+    total_cost = fields.Float(string="Total Cost", compute="_compute_total_cost", store=True)
+    profit = fields.Float(string="Profit", compute="_compute_profit", store=True)
+    service = fields.Selection([('hotel', 'Hotel'), ('flight', 'Flight')])
+
+    @api.depends('order_line.cost')
+    def _compute_total_cost(self):
+        for order in self:
+            order.total_cost = sum(line.cost for line in order.order_line)
+
+    @api.depends('total_cost', 'tax_totals')
+    def _compute_profit(self):
+        for order in self:
+            total_included = order.tax_totals.get('amount_total', 0.0)
+            order.profit = total_included - order.total_cost
+
     order_line_name = fields.Char(
         string='Order Line Name',
         compute='_compute_order_line_name',
