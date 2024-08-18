@@ -26,22 +26,38 @@ class CreatePurchaseOrder(models.TransientModel):
     date_order = fields.Datetime(string='Order Date', required=True, copy=False, default=fields.Datetime.now)
     analytic_distribution = fields.Json()
     cost = fields.Float()
+    pnr = fields.Char(string="PNR")
+    customer_name = fields.Char(string='Name')
+    airline = fields.Char()
+    serial_number = fields.Char()
+    route = fields.Char()
+    tkt_no = fields.Char()
+    reference = fields.Char()
+    price = fields.Float()
 
     @api.model
     def default_get(self, default_fields):
         res = super(CreatePurchaseOrder, self).default_get(default_fields)
         data = self.env['sale.order'].browse(self._context.get('active_ids', []))
         update = []
-        for record in data.order_line:
+        for line in data.order_line:
             update.append((0, 0, {
-                'product_id': record.product_id.id,
-                'product_uom': record.product_uom.id,
-                'order_id': record.order_id.id,
-                'name': record.name,
-                'analytic_distribution': record.analytic_distribution,
-                'product_qty': record.product_uom_qty,
-                'price_unit': record.cost,
-                'product_subtotal': record.price_subtotal,
+                'product_id': line.product_id.id,
+                'product_uom': line.product_uom.id,
+                'order_id': line.order_id.id,
+                'name': line.name,
+                'analytic_distribution': line.analytic_distribution,
+                'product_qty': line.product_uom_qty,
+                'price_unit': line.cost,
+                'product_subtotal': line.price_subtotal,
+                'customer_name': data.customer_name,
+                'pnr': line.pnr,
+                'airline': line.airline,
+                'serial_number': line.serial_number,
+                'route': line.route,
+                'tkt_no': line.tkt_no,
+                'reference': line.reference,
+                'price': line.price_unit,
             }))
             # print(record.cost,'[[[[[[[[[[[')
         res.update({'new_order_line_ids': update})
@@ -76,6 +92,14 @@ class CreatePurchaseOrder(models.TransientModel):
                 'taxes_id': data.product_id.supplier_taxes_id.ids,
                 'date_planned': data.date_planned,
                 'price_unit': data.price_unit,
+                'customer_name': data.customer_name,
+                'pnr': data.pnr,
+                'airline': data.airline,
+                'serial_number': data.serial_number,
+                'route': data.route,
+                'tkt_no': data.tkt_no,
+                'reference': data.reference,
+                'price': data.price_unit,
 
             }])
         purchase_order = self.env['purchase.order'].create({
@@ -110,6 +134,14 @@ class Getsaleorderdata(models.TransientModel):
     product_subtotal = fields.Float(string="Sub Total", compute='_compute_total')
     analytic_distribution = fields.Json()
     cost = fields.Float()
+    pnr = fields.Char(string="PNR")
+    customer_name = fields.Char(string='Name')
+    airline = fields.Char()
+    serial_number = fields.Char()
+    route = fields.Char()
+    tkt_no = fields.Char()
+    reference = fields.Char()
+    price = fields.Float()
 
     @api.depends('product_qty', 'price_unit')
     def _compute_total(self):

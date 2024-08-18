@@ -39,8 +39,8 @@
     <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
     <field name="arch" type="xml">
         <xpath expr="//field[@name='amount_total']" position="after">
-            <field name="total_cost" sum="total cost" optional="hide"/>
-            <field name="profit" sum="profit" optional="hide"/>
+            <field name="total_cost" sum="total_cost" optional="hide"/>
+            <field name="profit" optional="hide" sum="profit"/>
         </xpath>
     </field>
 </record>

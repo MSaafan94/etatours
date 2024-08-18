@@ -18,7 +18,7 @@
     'version': '1.3',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'web', 'sale', 'sale_management', 'crm', 'account', 'hr'],
+    'depends': ['base', 'web', 'sale', 'sale_management', 'crm', 'account', 'hr', 'purchase'],
     'license': 'OPL-1',
     # always loaded
     'data': [
@@ -26,6 +26,7 @@
         'views/menu.xml',
         'views/sales_to_invoice.xml',
         'reports/report.xml',
+        'views/sales_to_purchase.xml',
         'security/ir.model.access.csv',
         'views/sale_order_line_search_view.xml'
     ],

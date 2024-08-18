@@ -28,7 +28,7 @@
      """,
     'author' : "BrowseInfo",
     'website'  : "https://www.browseinfo.in",
-    'depends'  : [ 'base','sale_management', 'sale', 'purchase', 'sale_purchase','account'],
+    'depends'  : [ 'base','sale_management', 'sale', 'purchase', 'sale_purchase','account','tourism'],
     'data'     : [  'security/ir.model.access.csv',
                     'wizard/purchase_order_wizard_view.xml',
                     'views/inherit_sale_order_view.xml',
