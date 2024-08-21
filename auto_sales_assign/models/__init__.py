@@ -2,3 +2,4 @@
 
 from . import lead_assignment
 from . import crm_lead
+from . import prob

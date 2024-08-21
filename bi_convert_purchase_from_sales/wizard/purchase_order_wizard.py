@@ -50,7 +50,7 @@ class CreatePurchaseOrder(models.TransientModel):
                 'product_qty': line.product_uom_qty,
                 'price_unit': line.cost,
                 'product_subtotal': line.price_subtotal,
-                'customer_name': data.customer_name,
+                'customer_name': line.customer_name,
                 'pnr': line.pnr,
                 'airline': line.airline,
                 'serial_number': line.serial_number,

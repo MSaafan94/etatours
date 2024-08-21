@@ -6,24 +6,47 @@
             <field name="model">crm.lead</field>
             <field name="inherit_id" ref="crm.crm_lead_view_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//header" position="inside">
-<!--                    <header>-->
-                        <button name="action_assign_leads" string="Assign Leads" type="object" class="btn-primary"/>
-<!--                    </header>-->
-                </xpath>
-                <xpath expr="//field[@name='phone']" position="replace">
+<!--                <xpath expr="//header" position="inside">-->
+<!--&lt;!&ndash;                    <header>&ndash;&gt;-->
+<!--                        <button name="action_assign_leads" string="Assign Leads" type="object" class="btn-primary"/>-->
+<!--&lt;!&ndash;                    </header>&ndash;&gt;-->
+<!--                </xpath>-->
+                <xpath expr="//field[@name='phone']" position="after">
 <!--                    <label for="phone"/>-->
-                    <div class="0-row">
-                        <field name="phone"/>
-                        <button help="Send WhatsApp for Web" icon="fa-whatsapp" invisible="phone == False" name="open_whatsapp_web" style="color:#25D366;border:none" type="object"/>
-                        <button help="Send WhatsApp for Mobile" icon="fa-whatsapp" invisible="phone == False" name="open_whatsapp_mobile" style="color:#d3254e;border:none" type="object"/>
+                     <div class="oe_form_group">
+                        <group>
+                            <button help="Send WhatsApp for Web" icon="fa-whatsapp" invisible="phone == False" name="open_whatsapp_web" style="color:#25D366;border:none" type="object" title="Send WhatsApp for Web"/>
+                            <button help="Send WhatsApp for Mobile" icon="fa-whatsapp" invisible="phone == False" name="open_whatsapp_mobile" style="color:#d3254e;border:none" type="object" title="Send WhatsApp for Mobile"/>
+                        </group>
                     </div>
                 </xpath>
+
                  <xpath expr="//field[@name='tag_ids']" position="after">
                      <field name="destination"/>
                      <field name="travel_date"/>
+                     <field name="return_date"/>
                      <field name="platform"/>
                  </xpath>
+
+               <xpath expr="//field[@name='lost_reason_id']" position="after">
+<!--                    <div class="oe_form_group">-->
+                        <!-- Create a new group to contain the additional fields -->
+<!--                        <group>-->
+                            <field name="passport_number"/>
+                            <field name="birth_date"/>
+                            <field name="gender"/>
+                            <field name="expiration_date"/>
+                            <field name="passport_info" readonly="1"/>
+<!--                        </group>-->
+<!--                    </div>-->
+                </xpath>
+
+                 <xpath expr="//page[@name='extra']" position="after">
+                    <!-- Add the new page after the original page -->
+                    <page string="Moderator Notes" name="moderator_notes">
+                        <field name="moderator" placeholder="Add a description..." options="{'collaborative': true}"/>
+                    </page>
+                </xpath>
             </field>
         </record>
 
@@ -35,8 +58,8 @@
 <!--                    action = env['res.config.settings'].action_crm_assign_leads()-->
 <!--            </field>-->
 <!--        </record>-->
-<!--          <record id="crm_case_kanban_view_leads_inheritt" model="ir.ui.view">-->
-<!--            <field name="name">crm.lead.kanban.inherit.lead.assignmentt</field>-->
+<!--          <record id="crm_case_kanban_view_leads_inherit" model="ir.ui.view">-->
+<!--            <field name="name">crm.lead.kanban.inherit.lead.assignment</field>-->
 <!--            <field name="model">crm.lead</field>-->
 <!--            <field name="inherit_id" ref="crm.crm_lead_view_tree"/>-->
 <!--            <field name="arch" type="xml">-->
